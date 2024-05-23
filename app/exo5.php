@@ -9,6 +9,8 @@ try {
     exit;
 }
 
+require_once "_functions.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +51,14 @@ try {
             <h2 class="exercice-ttl">Question 1</h2>
             <p class="exercice-txt">Récupérer dans un tableau puis afficher l'ensemble des plateformes de diffusion des séries. Afficher les par ordre alphabétique.</p>
             <div class="exercice-sandbox">
-                
+                <?php
+                    foreach($series as $serie) {
+                        $channels[] = ($serie["availableOn"]);
+                    }
+                    $channels = excludeDuplicates($channels);
+                    sort($channels);
+                    var_dump($channels);
+                ?>
             </div>
         </section>
 
@@ -59,7 +68,14 @@ try {
             <p class="exercice-txt">Afficher la liste de toutes les séries avec l'image principale et son titre</p>
             <p class="exercice-txt">Afficher une seule série par ligne sur les plus petits écrans, 2 séries par ligne sur les écrans intermédiaires et 4 séries par ligne sur un écran d'ordinateur.</p>
             <div class="exercice-sandbox">
-
+                <?php
+                    foreach($series as $serie) {
+                        $link = $serie["image"];
+                        $name = $serie["name"];
+                        echo "<img src='$link'>";
+                        echo "<p>$name</p>";
+                    }
+                ?>
             </div>
         </section>
 
